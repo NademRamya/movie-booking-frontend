@@ -2,245 +2,232 @@ let allMovies = [];
 
 const API_BASE_URL = "https://movie-ticket-booking-ga44.onrender.com";
 
+
 /* =========================================
-LOAD MOVIES FROM BACKEND
+   LOAD MOVIES FROM BACKEND
 ========================================= */
 
 async function loadMovies() {
 
+    try {
 
-try {
+        console.log("Fetching movies...");
 
-    const response =
-        await fetch(
-            API_BASE_URL + "/movies"
+        const response = await fetch(
+            `${API_BASE_URL}/movies`
         );
 
-    if (!response.ok) {
-
-        throw new Error(
-            "Failed to fetch movies"
+        console.log(
+            "Response Status:",
+            response.status
         );
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to fetch movies"
+            );
+
+        }
+
+        allMovies = await response.json();
+
+        console.log(
+            "All Movies:",
+            allMovies
+        );
+
+        displayMovies(allMovies);
+
+    } catch (error) {
+
+        console.error(
+            "Error loading movies:",
+            error
+        );
+
+        document.getElementById(
+            "movieContainer"
+        ).innerHTML = `
+
+            <div class="movie-card">
+
+                <h3>Unable to load movies</h3>
+
+                <p>
+                    Please try again later.
+                </p>
+
+            </div>
+
+        `;
 
     }
 
-    allMovies =
-        await response.json();
-
-    console.log(
-        "All movies:",
-        allMovies
-    );
-
-    displayMovies(allMovies);
-
-} catch (error) {
-
-    console.error(
-        "Error:",
-        error
-    );
-
-    document.getElementById(
-        "movieContainer"
-    ).innerHTML = `
-
-        <div class="movie-card">
-
-            <h3>
-                Unable to load movies
-            </h3>
-
-            <p>
-                Please try again later.
-            </p>
-
-        </div>
-
-    `;
-
 }
 
-
-}
 
 /* =========================================
-DISPLAY MOVIES
+   DISPLAY MOVIES
 ========================================= */
 
 function displayMovies(movies) {
 
-
-const movieContainer =
-    document.getElementById(
-        "movieContainer"
-    );
-
-movieContainer.innerHTML = "";
+    const movieContainer =
+        document.getElementById("movieContainer");
 
 
-if (movies.length === 0) {
-
-    movieContainer.innerHTML = `
-
-        <div class="movie-card">
-
-            <h3>
-                No movies found
-            </h3>
-
-            <p>
-                No movies available
-                for this language.
-            </p>
-
-        </div>
-
-    `;
-
-    return;
-
-}
+    movieContainer.innerHTML = "";
 
 
-movies.forEach(function(movie) {
+    if (movies.length === 0) {
 
-    const movieCard =
-        document.createElement("div");
+        movieContainer.innerHTML = `
 
-    movieCard.classList.add(
-        "movie-card"
-    );
+            <div class="movie-card">
 
+                <h3>No movies found</h3>
 
-    movieCard.innerHTML = `
+                <p>
+                    No movies available for this language.
+                </p>
 
-        <div>
+            </div>
 
-            <h3>
-                ${movie.title}
-            </h3>
+        `;
 
-            <p>
-                Genre: ${movie.genre}
-            </p>
+        return;
 
-            <p>
-                Language: ${movie.language}
-            </p>
-
-            <p>
-                Duration: ${movie.duration} mins
-            </p>
-
-            <p>
-                Rating: ⭐ ${movie.rating}
-            </p>
-
-        </div>
-
-        <button onclick="bookMovie(${movie.id})">
-            Book Now
-        </button>
-
-    `;
+    }
 
 
-    movieContainer.appendChild(
-        movieCard
-    );
+    movies.forEach(function (movie) {
 
-});
+        const movieCard =
+            document.createElement("div");
 
+
+        movieCard.classList.add(
+            "movie-card"
+        );
+
+
+        movieCard.innerHTML = `
+
+            <div>
+
+                <h3>${movie.title}</h3>
+
+                <p>
+                    Genre: ${movie.genre}
+                </p>
+
+                <p>
+                    Language: ${movie.language}
+                </p>
+
+                <p>
+                    Duration: ${movie.duration} mins
+                </p>
+
+                <p>
+                    Rating: ⭐ ${movie.rating}
+                </p>
+
+            </div>
+
+
+            <button onclick="bookMovie(${movie.id})">
+
+                Book Now
+
+            </button>
+
+        `;
+
+
+        movieContainer.appendChild(
+            movieCard
+        );
+
+    });
 
 }
+
 
 /* =========================================
-OPEN / CLOSE MOVIES DROPDOWN
-========================================= */
-
-function toggleDropdown() {
-
-
-document
-    .getElementById("dropdownContent")
-    .classList.toggle("show");
-
-
-}
-
-/* =========================================
-FILTER MOVIES BY LANGUAGE
+   FILTER MOVIES BY LANGUAGE
 ========================================= */
 
 function filterMovies(language) {
 
+    let filteredMovies;
 
-let filteredMovies;
+
+    if (language === "All") {
+
+        filteredMovies = allMovies;
+
+    } else {
+
+        filteredMovies =
+            allMovies.filter(function (movie) {
+
+                return (
+                    movie.language &&
+                    movie.language
+                        .trim()
+                        .toLowerCase() ===
+                    language.toLowerCase()
+                );
+
+            });
+
+    }
 
 
-if (language === "All") {
+    displayMovies(filteredMovies);
 
-    filteredMovies = allMovies;
+}
 
-} else {
 
-    filteredMovies =
-        allMovies.filter(function(movie) {
+/* =========================================
+   BOOK MOVIE
+========================================= */
 
-            return movie.language
-                .trim()
-                .toLowerCase()
-                === language.toLowerCase();
+function bookMovie(movieId) {
+
+    localStorage.setItem(
+        "selectedMovieId",
+        movieId
+    );
+
+
+    window.location.href =
+        "booking.html";
+
+}
+
+
+/* =========================================
+   SCROLL TO MOVIES
+========================================= */
+
+function scrollToMovies() {
+
+    document
+        .getElementById("movies")
+        .scrollIntoView({
+
+            behavior: "smooth"
 
         });
 
 }
 
 
-displayMovies(filteredMovies);
-
-
-document
-    .getElementById("dropdownContent")
-    .classList.remove("show");
-
-
-}
-
 /* =========================================
-BOOK MOVIE
-========================================= */
-
-function bookMovie(movieId) {
-
-localStorage.setItem(
-    "selectedMovieId",
-    movieId
-);
-
-window.location.href =
-    "booking.html";
-
-
-}
-
-/* =========================================
-SCROLL TO MOVIES
-========================================= */
-
-function scrollToMovies() {
-
-document
-    .getElementById("movies")
-    .scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-/* =========================================
-LOAD MOVIES WHEN PAGE OPENS
+   LOAD MOVIES WHEN PAGE OPENS
 ========================================= */
 
 loadMovies();

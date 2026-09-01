@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MovieBook - Payment</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🎬 MovieBook
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="movies.html">
+            Movies
+        </a>
+
+        <a href="bookings.html">
+            Bookings
+        </a>
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= PAYMENT PAGE ================= -->
+
+<main class="payment-page">
+
+    <div class="payment-container">
+
+
+        <!-- HEADING -->
+
+        <div class="payment-heading">
+
+            <p class="booking-small-title">
+                MOVIEBOOK
+            </p>
+
+            <h1>
+                Complete Your Payment
+            </h1>
+
+            <p>
+                Review your booking and proceed with payment
+            </p>
+
+        </div>
+
+
+        <!-- BOOKING SUMMARY -->
+
+        <div class="payment-summary">
+
+            <h2>
+                Booking Summary
+            </h2>
+
+
+            <div class="summary-row">
+
+                <span>Movie</span>
+
+                <strong id="paymentMovie">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Theatre</span>
+
+                <strong id="paymentTheatre">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Show Time</span>
+
+                <strong id="paymentShowTime">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Seats</span>
+
+                <strong id="paymentSeats">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row total-row">
+
+                <span>Total Amount</span>
+
+                <strong id="totalAmount">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAYMENT METHOD -->
+
+        <div class="payment-method">
+
+            <h2>
+                Select Payment Method
+            </h2>
+
+
+            <label class="payment-option">
+
+                <input
+                    type="radio"
+                    name="payment"
+                    value="UPI"
+                    checked
+                >
+
+                UPI
+
+            </label>
+
+
+            <label class="payment-option">
+
+                <input
+                    type="radio"
+                    name="payment"
+                    value="CARD"
+                >
+
+                Credit / Debit Card
+
+            </label>
+
+
+            <label class="payment-option">
+
+                <input
+                    type="radio"
+                    name="payment"
+                    value="NETBANKING"
+                >
+
+                Net Banking
+
+            </label>
+
+        </div>
+
+
+        <!-- PAY BUTTON -->
+
+        <button
+            class="confirm-btn"
+            onclick="makePayment()">
+
+            Pay Now
+
+        </button>
+
+
+        <p id="paymentMessage"></p>
+
+
+    </div>
+
+</main>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="navbar.js"></script>
+
+<script src="payment.js"></script>
+
+</body>
+
+</html>
