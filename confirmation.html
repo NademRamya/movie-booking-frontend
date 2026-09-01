@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MovieBook - Booking Confirmation</title>
+
+    <link rel="stylesheet" href="confirmation.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= CONFIRMATION ================= -->
+
+<div class="confirmation-container">
+
+
+    <!-- SUCCESS ICON -->
+
+    <div class="success-icon">
+        ✓
+    </div>
+
+
+    <!-- HEADING -->
+
+    <h1>
+        Booking Confirmed!
+    </h1>
+
+
+    <p class="success-message">
+        Your movie tickets have been booked successfully.
+    </p>
+
+
+
+    <!-- ================= BOOKING CARD ================= -->
+
+    <div class="booking-card">
+
+
+        <!-- TICKET HEADER -->
+
+        <div class="ticket-header">
+
+            <div>
+
+                <span class="small-title">
+                    MOVIEBOOK
+                </span>
+
+                <h2>
+                    🎬 Movie Ticket
+                </h2>
+
+            </div>
+
+
+            <div class="status-badge" id="bookingStatus">
+                BOOKED
+            </div>
+
+        </div>
+
+
+
+        <!-- MOVIE -->
+
+        <div class="movie-title-section">
+
+            <span>
+                MOVIE
+            </span>
+
+            <h3 id="movieName">
+                Loading...
+            </h3>
+
+        </div>
+
+
+
+        <!-- ================= DETAILS ================= -->
+
+        <div class="ticket-details">
+
+
+            <!-- BOOKING ID -->
+
+            <div class="detail-box">
+
+                <span>
+                    BOOKING ID
+                </span>
+
+                <strong id="bookingId">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+
+            <!-- THEATRE -->
+
+            <div class="detail-box">
+
+                <span>
+                    THEATRE
+                </span>
+
+                <strong id="theatreName">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+
+            <!-- SHOW TIME -->
+
+            <div class="detail-box">
+
+                <span>
+                    SHOW TIME
+                </span>
+
+                <strong id="showTime">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+
+            <!-- SEATS -->
+
+            <div class="detail-box">
+
+                <span>
+                    SEATS
+                </span>
+
+                <strong id="seatNumbers">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+
+            <!-- BOOKING DATE -->
+
+            <div class="detail-box">
+
+                <span>
+                    BOOKING DATE
+                </span>
+
+                <strong id="bookingDate">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= TICKET DIVIDER ================= -->
+
+        <div class="ticket-divider">
+
+            <div class="circle left"></div>
+
+            <div class="dashed-line"></div>
+
+            <div class="circle right"></div>
+
+        </div>
+
+
+
+        <!-- ================= QR CODE ================= -->
+
+        <div class="qr-section">
+
+            <div id="qrcode"></div>
+
+            <p>
+                Scan this QR code to view your booking
+            </p>
+
+            <strong id="qrBookingId">
+                Booking ID
+            </strong>
+
+        </div>
+
+
+
+        <!-- ================= BARCODE ================= -->
+
+        <div class="barcode-section">
+
+            <div class="barcode">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+            <p>
+                Please show this ticket at the theatre entrance
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= BUTTONS ================= -->
+
+        <div class="ticket-buttons">
+
+            <button
+                class="home-btn"
+                onclick="goHome()">
+
+                ← Back to Home
+
+            </button>
+
+
+            <button
+                class="print-btn"
+                onclick="printTicket()">
+
+                🖨 Print Ticket
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= QR CODE LIBRARY ================= -->
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+</script>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="confirmation.js"></script>
+
+
+</body>
+
+</html>

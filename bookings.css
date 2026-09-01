@@ -1,0 +1,601 @@
+/* =========================================================
+   MOVIEBOOK - MY BOOKINGS
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #202b43 0%,
+            #0b0b0f 65%
+        );
+
+    color: white;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    width: 100%;
+    height: 78px;
+
+    padding: 0 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #111116;
+
+    border-bottom: 1px solid #292930;
+}
+
+
+/* LOGO */
+
+.logo {
+    color: #ffcc00;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+}
+
+.nav-links a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 17px;
+
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffcc00;
+}
+
+
+/* ACTIVE BOOKINGS LINK */
+
+.nav-links a.active {
+    color: #ffcc00;
+
+    font-weight: bold;
+}
+
+
+
+/* =========================================================
+   BOOKINGS PAGE
+========================================================= */
+
+.bookings-page {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 55px 25px 80px;
+}
+
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.bookings-header {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+
+.bookings-header p {
+    color: #ffcc00;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+}
+
+
+.bookings-header h1 {
+    font-size: 42px;
+
+    margin-bottom: 12px;
+}
+
+
+.bookings-header span {
+    color: #b8b8c2;
+
+    font-size: 16px;
+}
+
+
+
+/* =========================================================
+   BOOKINGS CONTAINER
+========================================================= */
+
+.bookings-container {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+}
+
+
+
+/* =========================================================
+   BOOKING CARD
+========================================================= */
+
+.booking-card {
+    background: #ffffff;
+
+    color: #111;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.35);
+
+    position: relative;
+
+    transition: 0.3s;
+}
+
+
+.booking-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.45);
+}
+
+
+
+/* YELLOW TOP LINE */
+
+.booking-card::before {
+    content: "";
+
+    display: block;
+
+    height: 6px;
+
+    background: linear-gradient(
+        90deg,
+        #ffcc00,
+        #ff9f00
+    );
+}
+
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.booking-card-header {
+    padding: 22px 30px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.movie-info h2 {
+    font-size: 24px;
+
+    margin-bottom: 6px;
+}
+
+
+.movie-info p {
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.booking-status {
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    background: #e7f8ed;
+
+    color: #16a34a;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+
+/* =========================================================
+   BOOKING DETAILS
+========================================================= */
+
+.booking-details {
+    padding: 25px 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+.booking-detail span {
+    display: block;
+
+    color: #888;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 7px;
+}
+
+
+.booking-detail strong {
+    color: #222;
+
+    font-size: 15px;
+}
+
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.booking-footer {
+    padding: 18px 30px;
+
+    background: #fafafa;
+
+    border-top: 1px dashed #d5d5d5;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.booking-id {
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+.booking-id strong {
+    color: #222;
+}
+
+
+
+/* =========================================================
+   VIEW TICKET BUTTON
+========================================================= */
+
+.view-ticket-btn {
+    border: none;
+
+    padding: 11px 20px;
+
+    border-radius: 8px;
+
+    background: #111;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.view-ticket-btn:hover {
+    background: #ffcc00;
+
+    color: #111;
+
+    transform: translateY(-2px);
+}
+
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+    text-align: center;
+
+    padding: 70px 20px;
+
+    color: #b8b8c2;
+
+    font-size: 17px;
+}
+
+
+
+/* =========================================================
+   NO BOOKINGS
+========================================================= */
+
+.no-bookings {
+    background: white;
+
+    color: #222;
+
+    padding: 60px 30px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+.no-bookings h2 {
+    margin-bottom: 10px;
+
+    font-size: 25px;
+}
+
+
+.no-bookings p {
+    color: #777;
+
+    margin-bottom: 25px;
+}
+
+
+.browse-movies-btn {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    background: #ffcc00;
+
+    color: #111;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+
+.browse-movies-btn:hover {
+    background: #111;
+
+    color: white;
+}
+
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error-message {
+    background: #fff;
+
+    color: #222;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    text-align: center;
+}
+
+
+.error-message h3 {
+    margin-bottom: 8px;
+}
+
+
+.error-message p {
+    color: #777;
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .navbar {
+        padding: 0 30px;
+    }
+
+
+    .booking-details {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .logo {
+        font-size: 25px;
+    }
+
+
+    .nav-links {
+        gap: 18px;
+    }
+
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+
+    .bookings-page {
+        padding: 40px 15px 60px;
+    }
+
+
+    .bookings-header h1 {
+        font-size: 32px;
+    }
+
+
+    .bookings-header span {
+        font-size: 14px;
+    }
+
+
+    .booking-card-header {
+        padding: 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .booking-details {
+        padding: 20px;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 20px;
+    }
+
+
+    .booking-footer {
+        padding: 18px 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .view-ticket-btn {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .booking-details {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* ===============================
+   LOGGED-IN USER
+================================ */
+
+.user-name {
+    color: #ffcc00;
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+}

@@ -1,0 +1,320 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b0c12,
+            #151722,
+            #08090e
+        );
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* =========================================
+   LOGIN CONTAINER
+========================================= */
+
+.login-container {
+
+    width: 100%;
+
+    max-width: 570px;
+
+    background: #ffffff;
+
+    padding: 45px 52px;
+
+    border-radius: 26px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45);
+
+    text-align: center;
+
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.login-icon {
+
+    width: 90px;
+
+    height: 90px;
+
+    margin: -80px auto 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #ffc400;
+
+    border-radius: 50%;
+
+    font-size: 42px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.login-container h1 {
+
+    font-size: 42px;
+
+    color: #101116;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.login-subtitle {
+
+    color: #777;
+
+    font-size: 18px;
+
+    margin-bottom: 40px;
+
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+#loginForm {
+
+    text-align: left;
+
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.form-group label {
+
+    display: block;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    color: #202020;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.form-group input {
+
+    width: 100%;
+
+    padding: 17px 18px;
+
+    border: 1px solid #d5d5d5;
+
+    border-radius: 12px;
+
+    font-size: 18px;
+
+    outline: none;
+
+    transition: 0.2s;
+
+}
+
+
+.form-group input:focus {
+
+    border-color: #ffc400;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 196, 0, 0.15);
+
+}
+
+
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+.login-btn {
+
+    width: 100%;
+
+    padding: 17px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #ffc400;
+
+    color: #111;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.login-btn:hover {
+
+    background: #ffb900;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+#message {
+
+    text-align: center;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    margin-top: 22px;
+
+    min-height: 20px;
+
+}
+
+
+/* =========================================
+   REGISTER TEXT
+========================================= */
+
+.register-text {
+
+    margin-top: 30px;
+
+    color: #777;
+
+    font-size: 17px;
+
+}
+
+
+.register-text a {
+
+    color: #111;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+}
+
+
+.register-text a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .login-container {
+
+        width: 92%;
+
+        padding: 40px 25px;
+
+    }
+
+
+    .login-container h1 {
+
+        font-size: 34px;
+
+    }
+
+
+    .login-subtitle {
+
+        font-size: 16px;
+
+    }
+
+}

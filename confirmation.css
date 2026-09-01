@@ -1,0 +1,728 @@
+/* =========================================================
+   MOVIEBOOK - BOOKING CONFIRMATION
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #202b43 0%,
+            #0b0b0f 65%
+        );
+
+    color: white;
+}
+
+
+/* =========================================================
+   CONFIRMATION CONTAINER
+========================================================= */
+
+.confirmation-container {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 25px 20px 40px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   SUCCESS ICON
+========================================================= */
+
+.success-icon {
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #20c997;
+
+    color: white;
+
+    font-size: 32px;
+    font-weight: bold;
+
+    box-shadow:
+        0 0 25px rgba(32, 201, 151, 0.35);
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.confirmation-container > h1 {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.success-message {
+    color: #b8b8c2;
+    font-size: 15px;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   BOOKING CARD / TICKET
+========================================================= */
+
+.booking-card {
+    width: 100%;
+
+    background: #f8f8f8;
+    color: #111;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    text-align: left;
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.55);
+
+    position: relative;
+}
+
+
+/* =========================================================
+   YELLOW TOP STRIP
+========================================================= */
+
+.booking-card::before {
+    content: "";
+
+    display: block;
+
+    height: 7px;
+
+    background: linear-gradient(
+        90deg,
+        #ffcc00,
+        #ff9f00
+    );
+}
+
+
+/* =========================================================
+   TICKET HEADER
+========================================================= */
+
+.ticket-header {
+    padding: 20px 32px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #dddddd;
+}
+
+.small-title {
+    display: block;
+
+    color: #777;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 4px;
+}
+
+.ticket-header h2 {
+    font-size: 24px;
+
+    color: #111;
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+.status-badge {
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    background: #e7f8ed;
+
+    color: #16a34a;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   MOVIE SECTION
+========================================================= */
+
+.movie-title-section {
+    padding: 20px 32px 12px;
+}
+
+.movie-title-section span {
+    display: block;
+
+    color: #888;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+}
+
+.movie-title-section h3 {
+    font-size: 28px;
+
+    color: #111;
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.ticket-details {
+    padding: 5px 32px 18px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px 30px;
+}
+
+.detail-box {
+    padding-bottom: 10px;
+
+    border-bottom: 1px dashed #d4d4d4;
+}
+
+.detail-box span {
+    display: block;
+
+    color: #888;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+}
+
+.detail-box strong {
+    display: block;
+
+    color: #111;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   TICKET DIVIDER
+========================================================= */
+
+.ticket-divider {
+    width: 100%;
+
+    height: 25px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.ticket-divider .circle {
+    width: 26px;
+    height: 26px;
+
+    background: #101016;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 0;
+}
+
+.ticket-divider .circle.left {
+    left: -13px;
+}
+
+.ticket-divider .circle.right {
+    right: -13px;
+}
+
+.dashed-line {
+    width: 100%;
+
+    border-top: 2px dashed #cccccc;
+}
+
+
+/* =========================================================
+   QR CODE SECTION
+========================================================= */
+
+.qr-section {
+    width: 100%;
+
+    padding: 12px 20px 15px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* QR IMAGE */
+
+.qr-section img {
+    width: 135px;
+    height: 135px;
+
+    object-fit: contain;
+
+    display: block;
+
+    margin: 0 auto 8px;
+
+    padding: 5px;
+
+    background: white;
+
+    border-radius: 8px;
+}
+
+
+/* QR TEXT */
+
+.qr-section p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 11px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   IF QR CODE USES .qr-code CLASS
+========================================================= */
+
+.qr-code {
+    width: 135px;
+    height: 135px;
+
+    display: block;
+
+    margin: 0 auto 8px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   BARCODE SECTION
+========================================================= */
+
+.barcode-section {
+    text-align: center;
+
+    padding: 12px 20px 18px;
+}
+
+.barcode {
+    height: 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    gap: 2px;
+
+    overflow: hidden;
+}
+
+.barcode span {
+    display: block;
+
+    width: 3px;
+
+    background: #111;
+}
+
+.barcode span:nth-child(2),
+.barcode span:nth-child(7),
+.barcode span:nth-child(12) {
+    width: 6px;
+}
+
+.barcode span:nth-child(3),
+.barcode span:nth-child(9),
+.barcode span:nth-child(15) {
+    width: 2px;
+}
+
+.barcode span:nth-child(4),
+.barcode span:nth-child(10),
+.barcode span:nth-child(16) {
+    width: 5px;
+}
+
+.barcode-section p {
+    margin-top: 8px;
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.ticket-buttons {
+    padding: 18px 32px 22px;
+
+    display: flex;
+
+    gap: 12px;
+}
+
+.ticket-buttons button {
+    flex: 1;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+/* =========================================================
+   PRINT BUTTON
+========================================================= */
+
+.print-btn {
+    background: #ffcc00;
+
+    color: #111;
+}
+
+.print-btn:hover {
+    background: #111;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HOME BUTTON
+========================================================= */
+
+.home-btn {
+    background: #eeeeee;
+
+    color: #222;
+}
+
+.home-btn:hover {
+    background: #dddddd;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .confirmation-container {
+        padding: 25px 15px 35px;
+    }
+
+    .confirmation-container > h1 {
+        font-size: 32px;
+    }
+
+    .ticket-header {
+        padding: 18px 25px;
+    }
+
+    .movie-title-section {
+        padding: 18px 25px 10px;
+    }
+
+    .ticket-details {
+        padding: 5px 25px 15px;
+
+        gap: 13px 20px;
+    }
+
+    .ticket-buttons {
+        padding: 15px 25px 20px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 550px) {
+
+    .confirmation-container {
+        padding: 20px 10px 30px;
+    }
+
+    .success-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 28px;
+    }
+
+    .confirmation-container > h1 {
+        font-size: 28px;
+    }
+
+    .success-message {
+        font-size: 14px;
+
+        margin-bottom: 18px;
+    }
+
+    .ticket-header {
+        padding: 18px 18px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+    .ticket-header h2 {
+        font-size: 21px;
+    }
+
+    .movie-title-section {
+        padding: 18px;
+    }
+
+    .movie-title-section h3 {
+        font-size: 25px;
+    }
+
+    .ticket-details {
+        padding: 5px 18px 15px;
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .qr-section {
+        padding: 10px 15px 15px;
+    }
+
+    .qr-section img,
+    .qr-code {
+        width: 120px;
+        height: 120px;
+    }
+
+    .ticket-buttons {
+        padding: 15px 18px 20px;
+
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================================
+   PRINT VERSION
+========================================================= */
+
+@media print {
+
+    body {
+        background: white !important;
+
+        color: black !important;
+
+        margin: 0;
+
+        padding: 0;
+    }
+
+    .success-icon,
+    .confirmation-container > h1,
+    .success-message,
+    .ticket-buttons {
+        display: none !important;
+    }
+
+    .confirmation-container {
+        width: 100%;
+
+        max-width: none;
+
+        padding: 0;
+
+        margin: 0;
+
+        text-align: center;
+    }
+
+    .booking-card {
+        width: 650px;
+
+        max-width: 95%;
+
+        margin: 15px auto;
+
+        background: white;
+
+        color: black;
+
+        border: 1px solid #cccccc;
+
+        border-radius: 12px;
+
+        box-shadow: none;
+
+        overflow: hidden;
+
+        page-break-inside: avoid;
+    }
+
+    .booking-card::before {
+        height: 5px;
+    }
+
+    .ticket-header {
+        padding: 15px 25px;
+    }
+
+    .ticket-header h2 {
+        font-size: 21px;
+    }
+
+    .movie-title-section {
+        padding: 15px 25px 10px;
+    }
+
+    .movie-title-section h3 {
+        font-size: 24px;
+    }
+
+    .ticket-details {
+        padding: 5px 25px 15px;
+
+        gap: 12px 20px;
+    }
+
+    .detail-box {
+        padding-bottom: 8px;
+    }
+
+    .detail-box span {
+        font-size: 9px;
+    }
+
+    .detail-box strong {
+        font-size: 13px;
+    }
+
+    .ticket-divider {
+        height: 20px;
+    }
+
+    .qr-section {
+        padding: 8px 15px 12px;
+    }
+
+    .qr-section img,
+    .qr-code {
+        width: 110px;
+        height: 110px;
+    }
+
+    .qr-section p {
+        font-size: 9px;
+    }
+
+    @page {
+        size: A4 portrait;
+
+        margin: 10mm;
+    }
+}

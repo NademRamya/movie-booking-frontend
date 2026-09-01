@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MovieBook - Home</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <!-- LOGO -->
+
+    <div class="logo">
+        🎬 MovieBook
+    </div>
+
+
+    <!-- NAVIGATION LINKS -->
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+
+        <!-- Movies goes to Movies section on this page -->
+
+        <a href="#movies">
+            Movies
+        </a>
+
+
+        <a href="bookings.html">
+            Bookings
+        </a>
+
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+
+        <p class="hero-small-title">
+            MOVIEBOOK
+        </p>
+
+
+        <h1>
+            Movie Ticket Booking
+        </h1>
+
+
+        <p>
+            Book your favourite movies easily!
+        </p>
+
+
+        <button onclick="scrollToMovies()">
+            Explore Movies
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MOVIES SECTION
+===================================================== -->
+
+<section id="movies"
+         class="movies-section">
+
+
+    <!-- SECTION HEADING -->
+
+    <div class="movies-heading">
+
+        <p class="movies-small-title">
+            MOVIEBOOK
+        </p>
+
+
+        <h2>
+            Now Showing
+        </h2>
+
+
+        <p>
+            Choose your favourite movie and book your seats
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         LANGUAGE FILTER
+    ================================================== -->
+
+    <div class="movie-filter">
+
+
+        <button onclick="filterMovies('All')">
+            All Movies
+        </button>
+
+
+        <button onclick="filterMovies('Telugu')">
+            Telugu
+        </button>
+
+
+        <button onclick="filterMovies('Hindi')">
+            Hindi
+        </button>
+
+
+        <button onclick="filterMovies('English')">
+            English
+        </button>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         MOVIE CONTAINER
+    ================================================== -->
+
+    <div id="movieContainer"
+         class="movie-container">
+
+        <!-- Movies will be loaded from Spring Boot -->
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="navbar.js"></script>
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

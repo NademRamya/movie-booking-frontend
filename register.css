@@ -1,0 +1,398 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b0c12,
+            #151722,
+            #08090e
+        );
+
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: #101116;
+
+    box-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+
+.logo {
+
+    color: #ffc400;
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+
+.nav-links a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+
+}
+
+
+.nav-links a:hover {
+
+    color: #ffc400;
+
+}
+
+
+/* =========================================
+   REGISTER PAGE
+========================================= */
+
+.register-page {
+
+    min-height:
+        calc(100vh - 75px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 50px 20px;
+
+}
+
+
+/* =========================================
+   REGISTER CONTAINER
+========================================= */
+
+.register-container {
+
+    width: 100%;
+
+    max-width: 550px;
+
+    background: white;
+
+    padding: 45px 50px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45);
+
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.register-icon {
+
+    width: 80px;
+
+    height: 80px;
+
+    margin: -80px auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #ffc400;
+
+    border-radius: 50%;
+
+    font-size: 38px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.register-container h1 {
+
+    color: #111;
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.register-subtitle {
+
+    color: #777;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+#registerForm {
+
+    text-align: left;
+
+}
+
+
+.form-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #222;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+}
+
+
+.form-group input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid #d5d5d5;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.2s;
+
+}
+
+
+.form-group input:focus {
+
+    border-color: #ffc400;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 196, 0, 0.15);
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+#message {
+
+    min-height: 22px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    margin: 10px 0 15px;
+
+}
+
+
+/* =========================================
+   REGISTER BUTTON
+========================================= */
+
+.register-btn {
+
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #ffc400;
+
+    color: #111;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.register-btn:hover {
+
+    background: #ffb900;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================
+   LOGIN LINK
+========================================= */
+
+.login-link {
+
+    margin-top: 25px;
+
+    color: #777;
+
+    font-size: 15px;
+
+}
+
+
+.login-link a {
+
+    color: #111;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+}
+
+
+.login-link a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+
+        padding: 0 20px;
+
+    }
+
+
+    .nav-links {
+
+        gap: 12px;
+
+    }
+
+
+    .nav-links a {
+
+        font-size: 13px;
+
+    }
+
+
+    .register-container {
+
+        padding: 40px 25px;
+
+    }
+
+
+    .register-container h1 {
+
+        font-size: 30px;
+
+    }
+
+}
