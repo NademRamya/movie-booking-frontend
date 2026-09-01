@@ -90,6 +90,26 @@ async function makePayment() {
     }
 
 
+    /* ================================
+       CHECK LOGGED-IN USER
+    ================================= */
+
+    const userId =
+        localStorage.getItem("userId");
+
+
+    if (!userId) {
+
+        alert("Please login first");
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
     const paymentMethod =
         selectedPayment.value;
 
@@ -116,6 +136,10 @@ async function makePayment() {
                 .split("T")[0];
 
 
+        /* ================================
+           CREATE BOOKING DATA
+        ================================= */
+
         const bookingData = {
 
             bookingDate: bookingDate,
@@ -123,7 +147,7 @@ async function makePayment() {
             status: "BOOKED",
 
             user: {
-                id: 9
+                id: Number(userId)
             },
 
             show: {
@@ -148,6 +172,10 @@ async function makePayment() {
             bookingData
         );
 
+
+        /* ================================
+           SAVE BOOKING
+        ================================= */
 
         const response =
             await fetch(
@@ -187,6 +215,10 @@ async function makePayment() {
             booking
         );
 
+
+        /* ================================
+           SAVE BOOKING DETAILS
+        ================================= */
 
         localStorage.setItem(
             "bookingId",
