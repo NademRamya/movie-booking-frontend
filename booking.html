@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MovieBook - Book Movie</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🎬 MovieBook
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="movies.html">
+            Movies
+        </a>
+
+        <a href="bookings.html">
+            Bookings
+        </a>
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= BOOKING PAGE ================= -->
+
+<main class="booking-page">
+
+
+    <!-- ================= BOOKING CARD ================= -->
+
+    <div class="booking-container">
+
+
+        <!-- ================= HEADING ================= -->
+
+        <div class="booking-heading">
+
+            <p class="booking-small-title">
+                MOVIEBOOK
+            </p>
+
+            <h1>
+                Book Your Movie
+            </h1>
+
+            <h2 id="selectedMovie">
+                Selected Movie:
+            </h2>
+
+            <p class="booking-description">
+                Select your theatre, show time and seats
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= THEATRE & SHOW TIME ================= -->
+
+        <div class="booking-row">
+
+
+            <!-- THEATRE -->
+
+            <div class="form-group">
+
+                <label for="theatre">
+                    Select Theatre
+                </label>
+
+
+                <select
+                    id="theatre"
+                    onchange="loadShows()">
+
+                    <option value="">
+                        Select Theatre
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- SHOW TIME -->
+
+            <div class="form-group">
+
+                <label for="showTime">
+                    Select Show Time
+                </label>
+
+
+                <select
+                    id="showTime"
+                    onchange="loadSeats()">
+
+                    <option value="">
+                        Select Show Time
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= SEATS ================= -->
+
+        <div class="seat-section">
+
+            <h3>
+                Select Seats
+            </h3>
+
+
+
+            <!-- CINEMA SCREEN -->
+
+            <div class="screen">
+                SCREEN
+            </div>
+
+
+
+            <!-- SEAT CONTAINER -->
+
+            <div id="seatContainer">
+
+                <p>
+                    Please select a show first
+                </p>
+
+            </div>
+
+
+
+            <!-- ================= SEAT LEGEND ================= -->
+
+            <div class="seat-legend">
+
+
+                <div>
+
+                    <span class="legend-seat available">
+                    </span>
+
+                    Available
+
+                </div>
+
+
+
+                <div>
+
+                    <span class="legend-seat selected">
+                    </span>
+
+                    Selected
+
+                </div>
+
+
+
+                <div>
+
+                    <span class="legend-seat booked">
+                    </span>
+
+                    Booked
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= SELECTED SEATS ================= -->
+
+        <div class="selected-seats-box">
+
+            <p id="selectedSeatsText">
+                Selected Seats: None
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= CONFIRM BOOKING ================= -->
+
+        <button
+            class="confirm-btn"
+            onclick="confirmBooking()">
+
+            Confirm Booking
+
+        </button>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="navbar.js"></script>
+<script src="booking.js"></script>
+
+</body>
+
+</html>

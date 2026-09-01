@@ -1,0 +1,1139 @@
+/* =========================================================
+   MOVIEBOOK - COMPLETE STYLE.CSS
+   Home + Movies + Booking Page
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b0b0f;
+    color: white;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav,
+.navbar {
+    width: 100%;
+    min-height: 75px;
+
+    padding: 0 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #111116;
+
+    border-bottom: 1px solid #292930;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo,
+nav h2 {
+    color: #ffcc00;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   NAVIGATION LINKS
+========================================================= */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffcc00;
+}
+
+
+/* =========================================================
+   MOVIES DROPDOWN
+========================================================= */
+
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    width: auto !important;
+
+    margin: 0 !important;
+
+    padding: 8px 0 !important;
+
+    background: transparent !important;
+
+    border: none;
+
+    color: white !important;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.dropbtn:hover {
+    color: #ffcc00 !important;
+}
+
+
+/* =========================================================
+   DROPDOWN CONTENT
+========================================================= */
+
+.dropdown-content {
+    display: none;
+
+    position: absolute;
+
+    top: 42px;
+
+    left: -25px;
+
+    min-width: 180px;
+
+    background: #18181f;
+
+    border: 1px solid #30303a;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+
+    padding: 13px 18px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+}
+
+.dropdown-content a:hover {
+    background: #292930;
+
+    color: #ffcc00;
+}
+
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.hero {
+    min-height: 500px;
+
+    padding: 70px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.9)
+        ),
+
+        radial-gradient(
+            circle at center,
+            #40205c,
+            #0b0b0f 70%
+        );
+}
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.hero h1 {
+    font-size: 58px;
+
+    line-height: 1.1;
+
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #c7c7cc;
+
+    font-size: 19px;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================================
+   HERO BUTTON
+========================================================= */
+
+.hero button {
+    width: auto !important;
+
+    padding: 14px 35px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #ffcc00;
+
+    color: #111;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.hero button:hover {
+    background: white;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 30px rgba(255, 204, 0, 0.25);
+}
+
+
+/* =========================================================
+   MOVIES SECTION
+========================================================= */
+
+.movies-section {
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 65px 30px 80px;
+}
+
+.movies-section > h2 {
+    font-size: 35px;
+
+    margin-bottom: 35px;
+
+    color: white;
+}
+
+
+/* =========================================================
+   MOVIE CONTAINER
+========================================================= */
+
+.movie-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(260px, 1fr)
+        );
+
+    gap: 25px;
+}
+
+
+/* =========================================================
+   MOVIE CARD
+========================================================= */
+
+.movie-card {
+    min-height: 310px;
+
+    padding: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    background: #17171d;
+
+    border: 1px solid #292930;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3);
+
+    transition: 0.3s;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #ffcc00;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================================
+   MOVIE TITLE
+========================================================= */
+
+.movie-card h3 {
+    color: white;
+
+    font-size: 23px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   MOVIE DETAILS
+========================================================= */
+
+.movie-card p {
+    color: #bcbcc4;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+.movie-card p:last-of-type {
+    color: #ffcc00;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   BOOK NOW BUTTON
+========================================================= */
+
+.movie-card button {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #ffcc00;
+
+    color: #111;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.movie-card button:hover {
+    background: white;
+
+    transform: scale(1.02);
+}
+
+
+/* =========================================================
+   BOOKING PAGE
+========================================================= */
+
+.booking-page {
+    min-height: calc(100vh - 75px);
+
+    padding: 50px 20px 70px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #21152e 0%,
+            #0b0b0f 55%
+        );
+}
+
+
+/* =========================================================
+   BOOKING CONTAINER
+========================================================= */
+
+.booking-container {
+    width: 100%;
+
+    max-width: 900px;
+
+    padding: 40px;
+
+    background: #17171d;
+
+    border: 1px solid #2d2d36;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================================
+   BOOKING HEADING
+========================================================= */
+
+.booking-container h1 {
+    text-align: center;
+
+    font-size: 38px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   SELECTED MOVIE
+========================================================= */
+
+#selectedMovie {
+    color: #ffcc00;
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    font-size: 21px;
+}
+
+
+/* =========================================================
+   BOOKING DESCRIPTION
+========================================================= */
+
+.booking-container > p {
+    color: #a9a9b1;
+
+    font-size: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   BOOKING ROW
+========================================================= */
+
+.booking-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+
+    margin-bottom: 40px;
+}
+
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+.booking-row label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   SELECT BOXES
+========================================================= */
+
+.booking-row select {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 15px;
+
+    background: #101015;
+
+    color: white;
+
+    border: 1px solid #3a3a44;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.booking-row select:hover {
+    border-color: #555562;
+}
+
+.booking-row select:focus {
+    border-color: #ffcc00;
+
+    box-shadow:
+        0 0 0 2px rgba(255, 204, 0, 0.08);
+}
+
+
+/* =========================================================
+   SEAT SECTION
+========================================================= */
+
+.seat-section {
+    padding-top: 5px;
+}
+
+.seat-section h3 {
+    font-size: 21px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   CINEMA SCREEN
+========================================================= */
+
+.screen {
+    width: 70%;
+
+    height: 35px;
+
+    margin: 0 auto 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eeeeee;
+
+    color: #111111;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    border-radius:
+        50% 50% 8px 8px;
+
+    box-shadow:
+        0 8px 25px rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================================
+   SEAT CONTAINER
+========================================================= */
+
+#seatContainer {
+    min-height: 130px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 48px);
+
+    justify-content: center;
+
+    column-gap: 12px;
+
+    row-gap: 15px;
+
+    padding: 15px 20px 30px;
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   "PLEASE SELECT A SHOW FIRST"
+   MUST USE FULL WIDTH
+========================================================= */
+
+#seatContainer > p {
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: #a9a9b1;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    padding: 20px 0;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   INDIVIDUAL SEAT
+========================================================= */
+
+#seatContainer .seat {
+    width: 48px;
+
+    height: 42px;
+
+    margin: 0;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #30303a;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+/* =========================================================
+   CENTER AISLE
+========================================================= */
+
+#seatContainer .seat:nth-child(3n) {
+    margin-right: 25px;
+}
+
+
+/* =========================================================
+   SEAT HOVER
+========================================================= */
+
+#seatContainer .seat:hover:not(:disabled) {
+    background: #555563;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   SELECTED SEAT
+========================================================= */
+
+#seatContainer .selected-seat {
+    background: #20c997 !important;
+
+    color: white;
+
+    box-shadow:
+        0 5px 15px rgba(32, 201, 151, 0.25);
+}
+
+
+/* =========================================================
+   BOOKED SEAT
+========================================================= */
+
+#seatContainer .booked-seat {
+    background: #dc3545 !important;
+
+    color: white;
+
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   SEAT LEGEND
+========================================================= */
+
+.seat-legend {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 10px 0 25px;
+
+    color: #a9a9b1;
+
+    font-size: 13px;
+}
+
+.seat-legend div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.legend-seat {
+    width: 14px;
+
+    height: 14px;
+
+    display: inline-block;
+
+    border-radius: 4px;
+}
+
+.legend-seat.available {
+    background: #30303a;
+}
+
+.legend-seat.selected {
+    background: #20c997;
+}
+
+.legend-seat.booked {
+    background: #dc3545;
+}
+
+
+/* =========================================================
+   SELECTED SEATS TEXT
+========================================================= */
+
+#selectedSeatsText {
+    margin-top: 5px;
+
+    margin-bottom: 25px;
+
+    padding: 15px 18px;
+
+    background: #101015;
+
+    border: 1px solid #292930;
+
+    border-radius: 10px;
+
+    color: #ffcc00;
+
+    font-size: 15px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   CONFIRM BOOKING BUTTON
+========================================================= */
+
+.confirm-btn {
+    width: 100%;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #ffcc00;
+
+    color: #111111;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.confirm-btn:hover {
+    background: white;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(255, 204, 0, 0.15);
+}
+
+
+/* =========================================================
+   GENERAL CONTAINER
+========================================================= */
+
+.container {
+    width: 100%;
+
+    max-width: 800px;
+
+    margin: 50px auto;
+
+    padding: 35px;
+
+    background: #17171d;
+
+    border: 1px solid #292930;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.4);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    text-align: center;
+
+    padding: 30px;
+
+    border-top: 1px solid #292930;
+
+    color: #777780;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   TABLET RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+
+    nav,
+    .navbar {
+        min-height: 75px;
+
+        padding: 18px 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .nav-links {
+        gap: 18px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 430px;
+
+        padding: 45px 20px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    /* MOVIES */
+
+    .movies-section {
+        padding: 45px 20px;
+    }
+
+    .movies-section > h2 {
+        font-size: 30px;
+    }
+
+    .movie-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* BOOKING */
+
+    .booking-page {
+        padding: 30px 15px 50px;
+    }
+
+    .booking-container {
+        padding: 25px 20px;
+
+        border-radius: 15px;
+    }
+
+    .booking-container h1 {
+        font-size: 30px;
+    }
+
+
+    /* FORM */
+
+    .booking-row {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        margin-bottom: 30px;
+    }
+
+
+    /* SCREEN */
+
+    .screen {
+        width: 85%;
+    }
+
+
+    /* SEATS */
+
+    #seatContainer {
+        grid-template-columns:
+            repeat(5, 40px);
+
+        column-gap: 8px;
+
+        row-gap: 12px;
+
+        padding-left: 5px;
+
+        padding-right: 5px;
+    }
+
+    #seatContainer .seat {
+        width: 40px;
+
+        height: 36px;
+
+        font-size: 11px;
+    }
+
+    #seatContainer .seat:nth-child(3n) {
+        margin-right: 15px;
+    }
+
+
+    /* LEGEND */
+
+    .seat-legend {
+        gap: 12px;
+
+        flex-wrap: wrap;
+    }
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media (max-width: 450px) {
+
+    /* LOGO */
+
+    .logo,
+    nav h2 {
+        font-size: 23px;
+    }
+
+
+    /* NAV LINKS */
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a,
+    .dropbtn {
+        font-size: 14px;
+    }
+
+
+    /* HERO */
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+
+    /* BOOKING */
+
+    .booking-container {
+        padding: 20px 15px;
+    }
+
+    .booking-container h1 {
+        font-size: 27px;
+    }
+
+
+    /* SEATS */
+
+    #seatContainer {
+        grid-template-columns:
+            repeat(5, 38px);
+
+        column-gap: 6px;
+
+        row-gap: 10px;
+
+        padding-left: 0;
+
+        padding-right: 0;
+    }
+
+    #seatContainer .seat {
+        width: 38px;
+
+        height: 35px;
+
+        font-size: 10px;
+    }
+
+    #seatContainer .seat:nth-child(3n) {
+        margin-right: 10px;
+    }
+
+
+    /* SCREEN */
+
+    .screen {
+        width: 90%;
+
+        height: 30px;
+
+        font-size: 10px;
+    }
+
+
+    /* CONFIRM BUTTON */
+
+    .confirm-btn {
+        height: 48px;
+
+        font-size: 15px;
+    }
+}
+/* ===============================
+   LOGGED-IN USER
+================================ */
+
+.user-name {
+    color: #ffcc00;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
