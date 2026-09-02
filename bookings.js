@@ -2,7 +2,8 @@
    MOVIEBOOK - MY BOOKINGS
 ===================================================== */
 
-const API_BASE_URL = "https://movie-ticket-booking-ga44.onrender.com";
+const API_BASE_URL =
+    "https://movie-ticket-booking-ga44.onrender.com";
 
 
 /* =====================================================
@@ -11,18 +12,30 @@ const API_BASE_URL = "https://movie-ticket-booking-ga44.onrender.com";
 
 async function loadBookings() {
 
-    const bookingsContainer = document.getElementById("bookingsContainer");
+    const bookingsContainer =
+        document.getElementById("bookingsContainer");
+
 
     // CHECK LOGIN
-    const storedUser = localStorage.getItem("loggedInUser");
+    const storedUser =
+        localStorage.getItem("loggedInUser");
+
 
     if (!storedUser) {
 
         bookingsContainer.innerHTML = `
             <div class="no-bookings">
+
                 <h2>Please Login</h2>
-                <p>You need to login to view your bookings.</p>
-                <button onclick="goToLogin()">Login</button>
+
+                <p>
+                    You need to login to view your bookings.
+                </p>
+
+                <button onclick="goToLogin()">
+                    Login
+                </button>
+
             </div>
         `;
 
@@ -35,21 +48,54 @@ async function loadBookings() {
 
     try {
 
-        user = JSON.parse(storedUser);
+        user =
+            JSON.parse(storedUser);
 
     } catch (error) {
 
-        console.error("User data error:", error);
+        console.error(
+            "User data error:",
+            error
+        );
 
-        localStorage.removeItem("loggedInUser");
+        localStorage.removeItem(
+            "loggedInUser"
+        );
 
-        window.location.href = "login.html";
+        window.location.href =
+            "login.html";
 
         return;
     }
 
 
-    console.log("Logged-in user:", user);
+    console.log(
+        "Logged-in user:",
+        user
+    );
+
+
+    // CHECK USER ID
+    if (!user.id) {
+
+        bookingsContainer.innerHTML = `
+            <div class="no-bookings">
+
+                <h2>User information missing</h2>
+
+                <p>
+                    Please login again.
+                </p>
+
+                <button onclick="goToLogin()">
+                    Login
+                </button>
+
+            </div>
+        `;
+
+        return;
+    }
 
 
     // SHOW LOADING
@@ -62,50 +108,54 @@ async function loadBookings() {
 
     try {
 
-        // GET ALL BOOKINGS
-        const response = await fetch(
-            `${API_BASE_URL}/bookings`
-        );
+        /*
+           GET ONLY THIS USER'S BOOKINGS
+        */
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/bookings/user/${user.id}`
+            );
 
 
         if (!response.ok) {
 
-            throw new Error("Failed to load bookings");
-
+            throw new Error(
+                "Failed to load bookings"
+            );
         }
 
 
-        const bookings = await response.json();
-
-        console.log("All bookings:", bookings);
-
-
-        // FILTER USER BOOKINGS
-        const userBookings = bookings.filter(function (booking) {
-
-            return (
-                booking.user &&
-                Number(booking.user.id) === Number(user.id)
-            );
-
-        });
+        const userBookings =
+            await response.json();
 
 
-        console.log("User bookings:", userBookings);
+        console.log(
+            "User bookings:",
+            userBookings
+        );
 
 
         // NO BOOKINGS
-        if (userBookings.length === 0) {
+        if (
+            !userBookings ||
+            userBookings.length === 0
+        ) {
 
             bookingsContainer.innerHTML = `
                 <div class="no-bookings">
 
-                    <div class="empty-icon">🎟️</div>
+                    <div class="empty-icon">
+                        🎟️
+                    </div>
 
-                    <h2>No Bookings Yet</h2>
+                    <h2>
+                        No Bookings Yet
+                    </h2>
 
                     <p>
-                        You haven't booked any movie tickets yet.
+                        You haven't booked any movie
+                        tickets yet.
                     </p>
 
                     <button onclick="goToMovies()">
@@ -124,216 +174,247 @@ async function loadBookings() {
 
 
         // DISPLAY BOOKINGS
-        userBookings.forEach(function (booking) {
+        userBookings.forEach(
+            function (booking) {
 
-            const bookingCard = document.createElement("div");
+                const bookingCard =
+                    document.createElement("div");
 
-            bookingCard.classList.add("booking-ticket");
-
-
-            // MOVIE NAME
-            const movieName =
-                booking.show &&
-                booking.show.movie
-                    ? booking.show.movie.title
-                    : "Movie";
+                bookingCard.classList.add(
+                    "booking-ticket"
+                );
 
 
-            // THEATRE NAME
-            const theatreName =
-                booking.show &&
-                booking.show.theatre
-                    ? booking.show.theatre.name
-                    : "Theatre";
+                // MOVIE NAME
+                const movieName =
+                    booking.show &&
+                    booking.show.movie
+                        ? booking.show.movie.title
+                        : "Movie";
 
 
-            // SHOW TIME
-            const showTime =
-                booking.show &&
-                booking.show.showTime
-                    ? booking.show.showTime
-                    : "Not available";
+                // THEATRE NAME
+                const theatreName =
+                    booking.show &&
+                    booking.show.theatre
+                        ? booking.show.theatre.name
+                        : "Theatre";
 
 
-            // BOOKING DATE
-            const bookingDate =
-                booking.bookingDate
-                    ? booking.bookingDate
-                    : "Not available";
+                // SHOW TIME
+                const showTime =
+                    booking.show &&
+                    booking.show.showTime
+                        ? booking.show.showTime
+                        : "Not available";
 
 
-            // STATUS
-            const status =
-                booking.status
-                    ? booking.status
-                    : "CONFIRMED";
+                // BOOKING DATE
+                const bookingDate =
+                    booking.bookingDate
+                        ? booking.bookingDate
+                        : "Not available";
 
 
-            // SEAT NUMBERS
-            let seatNumbers = "No seats";
-
-            if (
-                booking.seats &&
-                booking.seats.length > 0
-            ) {
-
-                seatNumbers = booking.seats
-                    .map(function (seat) {
-
-                        return seat.seatNumber;
-
-                    })
-                    .join(", ");
-
-            }
+                // STATUS
+                const status =
+                    booking.status
+                        ? booking.status
+                        : "CONFIRMED";
 
 
-            // STATUS CLASS
-            let statusClass = "status-confirmed";
-
-            if (
-                status.toLowerCase().includes("cancel")
-            ) {
-
-                statusClass = "status-cancelled";
-
-            }
+                // SEAT NUMBERS
+                let seatNumbers =
+                    "No seats";
 
 
-            // CANCEL BUTTON
-            let cancelButton = "";
+                if (
+                    booking.seats &&
+                    booking.seats.length > 0
+                ) {
 
-            if (
-                !status.toLowerCase().includes("cancel")
-            ) {
+                    seatNumbers =
+                        booking.seats
+                            .map(
+                                function (seat) {
 
-                cancelButton = `
-                    <button
-                        class="cancel-btn"
-                        onclick="cancelBooking(${booking.id})">
+                                    return seat.seatNumber;
 
-                        Cancel Booking
+                                }
+                            )
+                            .join(", ");
 
-                    </button>
-                `;
-
-            }
+                }
 
 
-            // CREATE BOOKING CARD
-            bookingCard.innerHTML = `
+                // STATUS CLASS
+                let statusClass =
+                    "status-confirmed";
 
-                <div class="ticket-top">
 
-                    <div>
+                if (
+                    status
+                        .toLowerCase()
+                        .includes("cancel")
+                ) {
 
-                        <span class="ticket-label">
-                            MOVIEBOOK
+                    statusClass =
+                        "status-cancelled";
+
+                }
+
+
+                // CANCEL BUTTON
+                let cancelButton = "";
+
+
+                if (
+                    !status
+                        .toLowerCase()
+                        .includes("cancel")
+                ) {
+
+                    cancelButton = `
+                        <button
+                            class="cancel-btn"
+                            onclick="cancelBooking(${booking.id})">
+
+                            Cancel Booking
+
+                        </button>
+                    `;
+
+                }
+
+
+                // CREATE BOOKING CARD
+                bookingCard.innerHTML = `
+
+                    <div class="ticket-top">
+
+                        <div>
+
+                            <span class="ticket-label">
+                                MOVIEBOOK
+                            </span>
+
+                            <h2>
+                                🎬 ${movieName}
+                            </h2>
+
+                        </div>
+
+
+                        <div class="booking-id">
+
+                            Booking ID
+
+                            <strong>
+                                #${booking.id}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="ticket-divider"></div>
+
+
+                    <div class="ticket-details">
+
+
+                        <div class="ticket-detail">
+
+                            <span>
+                                THEATRE
+                            </span>
+
+                            <strong>
+                                ${theatreName}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="ticket-detail">
+
+                            <span>
+                                SHOW TIME
+                            </span>
+
+                            <strong>
+                                ${showTime}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="ticket-detail">
+
+                            <span>
+                                SEATS
+                            </span>
+
+                            <strong>
+                                ${seatNumbers}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="ticket-detail">
+
+                            <span>
+                                BOOKING DATE
+                            </span>
+
+                            <strong>
+                                ${bookingDate}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="ticket-bottom">
+
+
+                        <span class="${statusClass}">
+
+                            ${status}
+
                         </span>
 
-                        <h2>
-                            🎬 ${movieName}
-                        </h2>
+
+                        <div class="ticket-actions">
+
+                            ${cancelButton}
+
+                        </div>
+
 
                     </div>
 
-
-                    <div class="booking-id">
-
-                        Booking ID
-
-                        <strong>
-                            #${booking.id}
-                        </strong>
-
-                    </div>
-
-                </div>
+                `;
 
 
-                <div class="ticket-divider"></div>
+                bookingsContainer.appendChild(
+                    bookingCard
+                );
 
-
-                <div class="ticket-details">
-
-
-                    <div class="ticket-detail">
-
-                        <span>THEATRE</span>
-
-                        <strong>
-                            ${theatreName}
-                        </strong>
-
-                    </div>
-
-
-                    <div class="ticket-detail">
-
-                        <span>SHOW TIME</span>
-
-                        <strong>
-                            ${showTime}
-                        </strong>
-
-                    </div>
-
-
-                    <div class="ticket-detail">
-
-                        <span>SEATS</span>
-
-                        <strong>
-                            ${seatNumbers}
-                        </strong>
-
-                    </div>
-
-
-                    <div class="ticket-detail">
-
-                        <span>BOOKING DATE</span>
-
-                        <strong>
-                            ${bookingDate}
-                        </strong>
-
-                    </div>
-
-
-                </div>
-
-
-                <div class="ticket-bottom">
-
-
-                    <span class="${statusClass}">
-
-                        ${status}
-
-                    </span>
-
-
-                    <div class="ticket-actions">
-
-                        ${cancelButton}
-
-                    </div>
-
-
-                </div>
-
-            `;
-
-
-            bookingsContainer.appendChild(bookingCard);
-
-        });
-
+            }
+        );
 
     } catch (error) {
 
-        console.error("Bookings Error:", error);
+        console.error(
+            "Bookings Error:",
+            error
+        );
+
 
         bookingsContainer.innerHTML = `
 
@@ -344,8 +425,7 @@ async function loadBookings() {
                 </h2>
 
                 <p>
-                    Please check your internet connection
-                    and try again.
+                    Please try again.
                 </p>
 
                 <button onclick="loadBookings()">
@@ -365,11 +445,14 @@ async function loadBookings() {
    CANCEL BOOKING
 ===================================================== */
 
-async function cancelBooking(bookingId) {
+async function cancelBooking(
+    bookingId
+) {
 
-    const confirmCancel = confirm(
-        "Are you sure you want to cancel this booking?"
-    );
+    const confirmCancel =
+        confirm(
+            "Are you sure you want to cancel this booking?"
+        );
 
 
     if (!confirmCancel) {
@@ -381,15 +464,16 @@ async function cancelBooking(bookingId) {
 
     try {
 
-        const response = await fetch(
+        const response =
+            await fetch(
 
-            `${API_BASE_URL}/bookings/${bookingId}/cancel`,
+                `${API_BASE_URL}/bookings/${bookingId}/cancel`,
 
-            {
-                method: "PUT"
-            }
+                {
+                    method: "PUT"
+                }
 
-        );
+            );
 
 
         if (!response.ok) {
@@ -432,7 +516,8 @@ async function cancelBooking(bookingId) {
 
 function goToLogin() {
 
-    window.location.href = "login.html";
+    window.location.href =
+        "login.html";
 
 }
 
@@ -443,7 +528,8 @@ function goToLogin() {
 
 function goToMovies() {
 
-    window.location.href = "index.html#movies";
+    window.location.href =
+        "index.html#movies";
 
 }
 
