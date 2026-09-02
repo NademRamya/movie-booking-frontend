@@ -126,6 +126,10 @@ async function makePayment() {
 
     try {
 
+        /* ================================
+           AUTOMATIC BOOKING DATE
+        ================================= */
+
         const today =
             new Date();
 
@@ -190,7 +194,9 @@ async function makePayment() {
                     },
 
                     body:
-                        JSON.stringify(bookingData)
+                        JSON.stringify(
+                            bookingData
+                        )
 
                 }
             );
@@ -201,7 +207,9 @@ async function makePayment() {
             const errorText =
                 await response.text();
 
-            throw new Error(errorText);
+            throw new Error(
+                errorText
+            );
 
         }
 
