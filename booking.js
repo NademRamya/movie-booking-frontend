@@ -3,6 +3,7 @@ const movieId = localStorage.getItem("selectedMovieId");
 let selectedSeats = [];
 let selectedShowId = null;
 let allShows = [];
+let showsLoaded = false;
 
 const API_BASE_URL =
     "https://movie-ticket-booking-ga44.onrender.com";
@@ -16,30 +17,24 @@ async function loadSelectedMovie() {
 
     try {
 
-        console.log("Selected Movie ID:", movieId);
-
-        if (!movieId) {
-            throw new Error("Movie ID missing");
-        }
-
-        const response = await fetch(
-            `${API_BASE_URL}/movies/${movieId}`
-        );
+        const response =
+            await fetch(
+                `${API_BASE_URL}/movies/${movieId}`
+            );
 
         if (!response.ok) {
             throw new Error("Movie not found");
         }
 
-        const movie = await response.json();
-
-        console.log("Selected Movie:", movie);
+        const movie =
+            await response.json();
 
         document.getElementById("selectedMovie").innerText =
             "Selected Movie: " + movie.title;
 
     } catch (error) {
 
-        console.error("Movie Error:", error);
+        console.error("Movie loading failed:", error);
 
         document.getElementById("selectedMovie").innerText =
             "Movie not found";
@@ -56,22 +51,22 @@ async function loadTheatres() {
     const theatreSelect =
         document.getElementById("theatre");
 
-    theatreSelect.innerHTML =
-        `<option value="">Loading theatres...</option>`;
+    // Disable theatre until shows are loaded
+    theatreSelect.disabled = true;
 
     try {
 
-        const response = await fetch(
-            `${API_BASE_URL}/theatres`
-        );
+        const response =
+            await fetch(
+                `${API_BASE_URL}/theatres`
+            );
 
         if (!response.ok) {
             throw new Error("Failed to fetch theatres");
         }
 
-        const theatres = await response.json();
-
-        console.log("All Theatres:", theatres);
+        const theatres =
+            await response.json();
 
         theatreSelect.innerHTML =
             `<option value="">Select Theatre</option>`;
@@ -81,7 +76,8 @@ async function loadTheatres() {
             const option =
                 document.createElement("option");
 
-            option.value = theatre.id;
+            option.value =
+                theatre.id;
 
             option.textContent =
                 theatre.name +
@@ -92,17 +88,20 @@ async function loadTheatres() {
 
         });
 
+        // Enable only after shows are ready
+        if (showsLoaded) {
+            theatreSelect.disabled = false;
+        }
+
     } catch (error) {
 
         console.error(
-            "Theatre Error:",
+            "Theatre loading failed:",
             error
         );
 
         theatreSelect.innerHTML =
-            `<option value="">
-                Unable to load theatres
-            </option>`;
+            `<option value="">Unable to load theatres</option>`;
     }
 }
 
@@ -117,9 +116,7 @@ async function loadAllShows() {
         document.getElementById("showTime");
 
     showSelect.innerHTML =
-        `<option value="">
-            Loading show times...
-        </option>`;
+        `<option value="">Loading show times...</option>`;
 
     try {
 
@@ -129,44 +126,44 @@ async function loadAllShows() {
             );
 
         if (!response.ok) {
-
-            throw new Error(
-                "Unable to load shows"
-            );
+            throw new Error("Unable to load shows");
         }
 
         allShows =
             await response.json();
 
-        console.log(
-            "ALL SHOWS LOADED:",
-            allShows
-        );
+        showsLoaded = true;
 
         showSelect.innerHTML =
-            `<option value="">
-                Select Show Time
-            </option>`;
+            `<option value="">Select Show Time</option>`;
+
+        // Enable theatre after shows are ready
+        const theatreSelect =
+            document.getElementById("theatre");
+
+        if (theatreSelect) {
+            theatreSelect.disabled = false;
+        }
 
     } catch (error) {
 
         console.error(
-            "SHOW ERROR:",
+            "Show loading failed:",
             error
         );
 
         allShows = [];
 
+        showsLoaded = false;
+
         showSelect.innerHTML =
-            `<option value="">
-                Unable to load shows
-            </option>`;
+            `<option value="">Unable to load shows</option>`;
     }
 }
 
 
 /* =====================================================
-   LOAD SHOWS
+   LOAD SHOWS FOR SELECTED THEATRE
 ===================================================== */
 
 function loadShows() {
@@ -181,23 +178,25 @@ function loadShows() {
         document.getElementById("seatContainer");
 
 
-    console.log(
-        "Selected Theatre ID:",
-        theatreId
-    );
+    /* ---------------------------------------------
+       WAIT UNTIL SHOWS ARE LOADED
+    --------------------------------------------- */
 
-    console.log(
-        "Selected Movie ID:",
-        movieId
-    );
+    if (!showsLoaded) {
+
+        showSelect.innerHTML =
+            `<option value="">Loading show times...</option>`;
+
+        return;
+    }
 
 
-    /* RESET */
+    /* ---------------------------------------------
+       RESET
+    --------------------------------------------- */
 
     showSelect.innerHTML =
-        `<option value="">
-            Select Show Time
-        </option>`;
+        `<option value="">Select Show Time</option>`;
 
     seatContainer.innerHTML =
         "<p>Please select a show first</p>";
@@ -214,55 +213,39 @@ function loadShows() {
     }
 
 
-    /* =================================================
+    /* ---------------------------------------------
        FILTER SHOWS
-    ================================================= */
+    --------------------------------------------- */
 
     const filteredShows =
         allShows.filter(function (show) {
 
             return (
-
                 show.movie &&
                 show.theatre &&
-
-                Number(show.movie.id) ===
-                Number(movieId)
-
-                &&
-
-                Number(show.theatre.id) ===
-                Number(theatreId)
-
+                Number(show.movie.id) === Number(movieId) &&
+                Number(show.theatre.id) === Number(theatreId)
             );
 
         });
 
 
-    console.log(
-        "FILTERED SHOWS:",
-        filteredShows
-    );
-
-
-    /* =================================================
+    /* ---------------------------------------------
        NO SHOWS
-    ================================================= */
+    --------------------------------------------- */
 
     if (filteredShows.length === 0) {
 
         showSelect.innerHTML =
-            `<option value="">
-                No shows available
-            </option>`;
+            `<option value="">No shows available</option>`;
 
         return;
     }
 
 
-    /* =================================================
+    /* ---------------------------------------------
        DISPLAY SHOW TIMES
-    ================================================= */
+    --------------------------------------------- */
 
     filteredShows.forEach(function (show) {
 
@@ -275,12 +258,9 @@ function loadShows() {
         option.textContent =
             show.showTime;
 
-        showSelect.appendChild(
-            option
-        );
+        showSelect.appendChild(option);
 
     });
-
 }
 
 
@@ -304,17 +284,7 @@ async function loadSeats() {
         showSelect.value;
 
 
-    console.log(
-        "Selected Show ID:",
-        selectedShowId
-    );
-
-
-    seatContainer.innerHTML = `
-        <p>
-            Loading seats...
-        </p>
-    `;
+    seatContainer.innerHTML = "";
 
     selectedSeats = [];
 
@@ -341,10 +311,9 @@ async function loadSeats() {
 
     try {
 
-        /* =================================================
-           LOAD BOTH AT THE SAME TIME
-           This is faster than waiting one after another.
-        ================================================= */
+        /* ---------------------------------------------
+           LOAD THEATRE SEATS + BOOKED SEATS TOGETHER
+        --------------------------------------------- */
 
         const [
             seatResponse,
@@ -385,20 +354,9 @@ async function loadSeats() {
             await bookedResponse.json();
 
 
-        console.log(
-            "THEATRE SEATS:",
-            theatreSeats
-        );
-
-        console.log(
-            "BOOKED SEAT IDs:",
-            bookedSeatIds
-        );
-
-
-        /* =================================================
+        /* ---------------------------------------------
            NO SEATS
-        ================================================= */
+        --------------------------------------------- */
 
         if (theatreSeats.length === 0) {
 
@@ -409,22 +367,17 @@ async function loadSeats() {
         }
 
 
-        /* =================================================
+        /* ---------------------------------------------
            DISPLAY SEATS
-        ================================================= */
-
-        seatContainer.innerHTML = "";
-
+        --------------------------------------------- */
 
         theatreSeats.forEach(function (seat) {
 
             const seatButton =
                 document.createElement("button");
 
-
             seatButton.innerText =
                 seat.seatNumber;
-
 
             seatButton.classList.add(
                 "seat"
@@ -434,9 +387,7 @@ async function loadSeats() {
             /* BOOKED SEAT */
 
             if (
-                bookedSeatIds.includes(
-                    seat.id
-                )
+                bookedSeatIds.includes(seat.id)
             ) {
 
                 seatButton.classList.add(
@@ -462,7 +413,6 @@ async function loadSeats() {
                         );
 
                     };
-
             }
 
 
@@ -476,18 +426,13 @@ async function loadSeats() {
     } catch (error) {
 
         console.error(
-            "Seat Error:",
+            "Seat loading failed:",
             error
         );
 
-        seatContainer.innerHTML = `
-            <p>
-                Unable to load seats.
-                Please try again.
-            </p>
-        `;
+        seatContainer.innerHTML =
+            "<p>Unable to load seats</p>";
     }
-
 }
 
 
@@ -522,9 +467,7 @@ function selectSeat(
             "selected-seat"
         );
 
-    }
-
-    else {
+    } else {
 
         selectedSeats.push({
 
@@ -537,7 +480,6 @@ function selectSeat(
         button.classList.add(
             "selected-seat"
         );
-
     }
 
 
@@ -562,9 +504,7 @@ function updateSelectedSeats() {
         selectedSeatsDiv.innerText =
             "Selected Seats: None";
 
-    }
-
-    else {
+    } else {
 
         const seatNumbers =
             selectedSeats.map(
@@ -579,9 +519,7 @@ function updateSelectedSeats() {
         selectedSeatsDiv.innerText =
             "Selected Seats: " +
             seatNumbers.join(", ");
-
     }
-
 }
 
 
@@ -671,9 +609,7 @@ function proceedToPayment() {
 
     localStorage.setItem(
         "paymentSeats",
-        JSON.stringify(
-            selectedSeats
-        )
+        JSON.stringify(selectedSeats)
     );
 
 
@@ -686,13 +622,19 @@ function proceedToPayment() {
    INITIAL LOAD
 ===================================================== */
 
-/*
-   These three requests start together.
-   This prevents unnecessary waiting.
-*/
+async function initializeBookingPage() {
 
-loadSelectedMovie();
+    await Promise.all([
 
-loadTheatres();
+        loadSelectedMovie(),
 
-loadAllShows();
+        loadTheatres(),
+
+        loadAllShows()
+
+    ]);
+
+}
+
+
+initializeBookingPage();
